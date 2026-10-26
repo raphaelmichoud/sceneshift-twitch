@@ -8,6 +8,8 @@
 - Mocked Twitch adapter tests: token validation, four read-only EventSub subscriptions, broadcaster filtering, migration without duplicate resubscription, revocation shutdown, allowed reconnect host, and wrong-broadcaster rejection.
 - Twitch-event bridge tests: chat-message vs notification IDs, replay/stale/malformed timestamp rejection, Shared Chat origin filtering, deletion canceling an active result, removal of a cleared viewer’s ballot, and preservation of streamer-approved canon.
 - Browser rehearsal in the Codex in-app browser: unlocked the local studio, added three labeled sample twists, approved all three, attached `lens → A tiny storm lives inside`, opened a vote, simulated 12 viewers, observed **4 / 6 / 2** counts, revealed the storm as winner, explicitly committed it, and observed both chapter and fact in the ledger.
+- Browser next-scene transition also passed: scene 02 opened with the storm chapter and lens fact preserved.
+- GitHub Actions independently passed the syntax checks and full test suite on Linux: https://github.com/raphaelmichoud/sceneshift-twitch/actions/runs/40360595736
 - Separate `/overlay` browser tab showed the committed result with no studio controls and explicit **REHEARSAL · SIMULATED CHAT** labeling. Screenshots: `studio-preview.png` and `overlay-preview.png`.
 - Source prepared without external images/fonts/music, runtime npm packages, or committed credentials. Native runtime data is ignored by Git.
 
