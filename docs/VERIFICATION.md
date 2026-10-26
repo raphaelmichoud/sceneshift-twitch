@@ -13,14 +13,16 @@
 - Separate `/overlay` browser tab showed the committed result with no studio controls and explicit **REHEARSAL · SIMULATED CHAT** labeling. Screenshots: `studio-preview.png` and `overlay-preview.png`.
 - Source prepared without external images/fonts/music, runtime npm packages, or committed credentials. Native runtime data is ignored by Git.
 
+- Repository publication approved by the owner and GitHub visibility verified as PUBLIC on October 26, 2026.
+
 ## Pending — do not describe these as completed
 
-- Actual Twitch application registration and broadcaster OAuth consent.
+- Actual Twitch application registration and broadcaster OAuth consent. The owner chose to leave Twitch verification pending.
 - Real Twitch chat delivery, real production token refresh, and production reconnection under an actual outage. These paths have mocked coverage, not live-service proof.
 - An OBS browser source displayed in a real Twitch stream; this is required footage for the intended hackathon demo.
 - Docker image build and a permanent public hosting deployment. The deployment recipe is prepared; no public test URL is claimed.
 - Mobile viewport QA and OBS-specific browser engine QA. Responsive styles are implemented; the verified browser viewport was 1280 × 720.
-- Public GitHub visibility / judge access, public YouTube recording/upload, and final Devpost submission.
+- Public YouTube recording/upload and final Devpost submission.
 
 ## Live proof record to fill after authentication
 

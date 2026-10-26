@@ -45,7 +45,7 @@ Test with narrative streamers, refine the pace of the reveal, and explore option
 OpenAI Codex, JavaScript, Node.js 22, Twitch OAuth, Twitch EventSub WebSockets, HTML, CSS, server-sent events, Node test runner, OBS browser source.
 
 ## Links and verification before submission
-Repository: https://github.com/raphaelmichoud/sceneshift-twitch (make public or grant the official judges access before submitting).
+Repository: https://github.com/raphaelmichoud/sceneshift-twitch (public source repository).
 
 Build thread/session: `01a17901-b64d-7043-9268-af05e280ce91`.
 

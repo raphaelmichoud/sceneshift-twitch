@@ -35,11 +35,11 @@ The account owner must sign in, complete verification/CAPTCHA if prompted, regis
 
 Repository: https://github.com/raphaelmichoud/sceneshift-twitch
 
-The prepared remote is private until the owner approves publication. The rules require an accessible GitHub/GitLab/Bitbucket repository with full source and run instructions. **Before final submission**, either make it public or share the private GitHub/GitLab repository with the exact judge address shown on the rules page. The scraped address is obfuscated; read it directly rather than guessing. Public source under the included MIT license is the straightforward route once approved.
+The repository was made public on October 26, 2026 with the owner’s approval. The rules require an accessible GitHub/GitLab/Bitbucket repository with full source and run instructions. **Before final submission**, either make it public or share the private GitHub/GitLab repository with the exact judge address shown on the rules page. The scraped address is obfuscated; read it directly rather than guessing. Public source under the included MIT license is the straightforward route once approved.
 
 - [ ] Review source and docs, including names and screenshots.
 - [ ] Confirm no `.env`, `data/`, tokens, private key, or unrelated files are tracked.
-- [ ] Approve/make repository public or configure official judge access.
+- [x] Repository made public with owner approval.
 - [ ] Confirm repository clone and README work while signed out (if public).
 - [ ] Keep source and testing free and available through the end of judging, November 15, 2026 at 17:00 Pacific (November 16 at 02:00 Zurich).
 
