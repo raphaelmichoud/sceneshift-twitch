@@ -34,3 +34,11 @@
 - Recording or public video URL:
 
 Keep secrets and access tokens out of this record. Update this file after the actual live run and before final submission.
+
+## October 31 live setup and retry update
+
+- Broadcaster authorized Twitch; local status confirmed connected to raphaelmichoud75.
+- Real proposals from two Twitch accounts arrived and were approved by the owner.
+- Two live votes closed with zero ballots; live vote delivery/replacement is still pending verification. The second vote was open for 90 seconds. Timing versus delivery is not yet established.
+- Added a streamer-only five-minute retry for empty results, preserving approved choices. Nonempty and committed results cannot be retried. Duration selection survives live UI updates; private activity records accepted, changed, and out-of-window votes.
+- The expanded 21-test suite passes, including retry state and deadline checks. OBS/live-stream footage is still pending.

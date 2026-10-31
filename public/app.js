@@ -104,12 +104,12 @@ function settings() {
 function controls() {
   let action = "";
   if (state.phase === "collecting")
-    action = `<div class="vote-duration"><label for="duration">Vote length</label><select id="duration"><option value="45">45 seconds</option><option value="15">15 seconds</option><option value="90">90 seconds</option></select></div><button class="primary" id="open" ${options().length < 2 ? "disabled" : ""}>Open the vote <span>↗</span></button>`;
+    action = `<div class="vote-duration"><label for="duration">Vote length</label><select id="duration"><option value="45">45 seconds</option><option value="15">15 seconds</option><option value="90">90 seconds</option><option value="300">5 minutes (test)</option></select></div><button class="primary" id="open" ${options().length < 2 ? "disabled" : ""}>Open the vote <span>↗</span></button>`;
   else if (state.phase === "voting")
     action =
       '<p class="muted">Votes close automatically. Ties favor the first approved option in stage order.</p><button class="primary" data-action="close">Close & reveal ↗</button>';
   else
-    action = `${state.phase === "revealed" && state.winnerId ? '<button class="primary mint" data-action="commit">✦ Make this canon</button>' : ""}<form id="next-form"><label>Next scene prompt<textarea name="prompt" placeholder="The lens cracks open. What does Mara find?" maxlength="240" required></textarea></label><button class="secondary">${state.phase === "canon" ? "Start next scene ↗" : "Skip result & start next scene ↗"}</button></form>`;
+    action = `${state.phase === "revealed" && !state.winnerId && !state.totalVotes && options().length >= 2 ? '<button class="primary" data-action="retry">Retry vote · 5 minutes ↗</button>' : ""}${state.phase === "revealed" && state.winnerId ? '<button class="primary mint" data-action="commit">✦ Make this canon</button>' : ""}<form id="next-form"><label>Next scene prompt<textarea name="prompt" placeholder="The lens cracks open. What does Mara find?" maxlength="240" required></textarea></label><button class="secondary">${state.phase === "canon" ? "Start next scene ↗" : "Skip result & start next scene ↗"}</button></form>`;
   return `<div class="round-controls"><span class="eyebrow">DIRECTOR’S CUE</span>${action}</div>`;
 }
 function rehearsal() {
@@ -117,6 +117,7 @@ function rehearsal() {
 }
 function render() {
   if (!state) return;
+  const duration = $("#duration")?.value;
   const focused = document.activeElement;
   const focusId = focused?.id;
   const formId = focused?.form?.id;
@@ -135,6 +136,7 @@ function render() {
     ? `<main class="overlay-wrap">${stage()}</main>`
     : `<header><a href="/" class="brand"><span class="brand-mark">↗</span>SceneShift<span class="brand-label">STUDIO</span></a><div class="header-right"><span id="sync" class="sync">● Synced</span>${badge()}<a href="/overlay" target="_blank" rel="noopener" class="overlay-link">Open overlay ↗</a></div></header><main><section class="intro"><div><span class="eyebrow">LET CHAT CHANGE THE STORY</span><h1>Your story. Their plot twist.</h1><p>${phaseHint[state.phase]}</p></div><div class="intro-step"><span class="${state.phase === "collecting" ? "active" : ""}">01 Curate</span><b>→</b><span class="${state.phase === "voting" ? "active" : ""}">02 Vote</span><b>→</b><span class="${["revealed", "canon"].includes(state.phase) ? "active" : ""}">03 Make canon</span></div></section><div class="workspace"><div class="broadcast"><div class="section-label"><span>◉ OVERLAY PREVIEW</span><span>OBS BROWSER SOURCE · 1920 × 1080</span></div>${stage()}${admin ? rehearsal() : `<section class="unlock"><div><span class="eyebrow">WELCOME TO THE WRITERS’ ROOM</span><h2>The audience brings the chaos.<br>You keep the story.</h2><p>Unlock the studio to curate twists, run votes, and keep a living canon.</p></div><form id="login-form"><label>Studio key<input type="password" name="key" autocomplete="current-password" required placeholder="Your private studio key"></label><button class="primary">Enter the studio ↗</button><small>Local setup: find your key in data/admin.key. See README for Twitch setup.</small></form></section>`}</div>${admin ? `<aside><div class="tabs" role="tablist"><button role="tab" aria-selected="${tab === "queue"}" data-tab="queue" class="${tab === "queue" ? "selected" : ""}">Twist queue</button><button role="tab" aria-selected="${tab === "ledger"}" data-tab="ledger" class="${tab === "ledger" ? "selected" : ""}">Canon</button><button role="tab" aria-selected="${tab === "settings"}" data-tab="settings" class="${tab === "settings" ? "selected" : ""}">Settings</button></div><section class="panel">${tab === "queue" ? queue() : tab === "ledger" ? ledger() : settings()}</section>${controls()}<details class="activity"><summary>Room activity</summary>${state.activity.map((a) => `<p><time>${new Date(a.at).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}</time>${esc(a.text)}</p>`).join("")}</details></aside>` : ""}</div><footer><span>SceneShift <b>↗</b> <span>A little chaos. A lot of story.</span></span><span>Built with Codex · Powered by your community</span></footer></main>`;
   if (!overlay) {
+    if (duration && $("#duration")) $("#duration").value = duration;
     for (const id of opened) {
       const d = document.getElementById(id)?.querySelector("details");
       if (d) d.open = true;

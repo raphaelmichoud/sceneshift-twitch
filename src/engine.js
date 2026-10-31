@@ -125,8 +125,14 @@ export function ingest(
       Number(vote[1]) - 1
     ];
     if (!p) return false;
+    const changed = Boolean(s.votes[userId] && s.votes[userId] !== p.id);
     s.votes[userId] = p.id;
+    log(s, `${author}: vote ${changed ? "changed to" : "counted for"} option ${vote[1]}.`, now);
     return true;
+  }
+  if (vote && s.phase !== "voting") {
+    log(s, `${author}: vote ignored because voting is closed.`, now);
+    return false;
   }
   const twist = text.trim().match(/^!twist\s+(.+)$/i);
   if (!twist || s.phase !== "collecting") return false;
@@ -198,6 +204,15 @@ export function command(s, action, payload = {}, now = Date.now()) {
     }
     case "close":
       closeVote(s, now);
+      break;
+    case "retry":
+      if (s.phase !== "revealed" || s.winnerId || Object.keys(s.votes).length)
+        fail("Only an empty, uncommitted vote can be retried.");
+      if (s.proposals.filter(p => p.status === "approved").length < 2)
+        fail("At least two approved twists are required.");
+      s.phase = "voting";
+      s.deadline = now + 300000;
+      log(s, "Empty vote reopened for five minutes. The same approved choices are retained.", now);
       break;
     case "commit": {
       if (s.phase !== "revealed" || !s.winnerId)

@@ -118,3 +118,20 @@ test("capacity limits and malformed inputs are deterministic", () => {
   assert.throws(() => command(s, "open", { seconds: 1 }));
   assert.throws(() => command(s, "fact", { key: "__proto__", value: "x" }));
 });
+
+test('empty vote can be retried with fixed choices for five minutes; committed or nonempty result cannot', () => {
+  const s = prepared();
+  command(s, 'open', {seconds:10}, 1000);
+  command(s, 'close', {}, 2000);
+  const ids = s.proposals.map(p => p.id);
+  command(s, 'retry', {}, 3000);
+  assert.equal(s.phase, 'voting');
+  assert.equal(s.deadline, 303000);
+  assert.deepEqual(s.proposals.map(p => p.id), ids);
+  assert.throws(() => command(s, 'retry', {}, 4000));
+  ingest(s, {userId:'viewer',author:'viewer',messageId:'retry-vote',text:'!vote 2'}, 5000);
+  command(s, 'close', {}, 6000);
+  assert.throws(() => command(s, 'retry', {}, 7000));
+  command(s, 'commit', {}, 7000);
+  assert.throws(() => command(s, 'retry', {}, 8000));
+});

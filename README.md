@@ -48,7 +48,7 @@ The overlay requests a public projection even if opened in an authenticated brow
 
 - Collect → vote → reveal → canon → next scene. A result can be skipped by starting a new scene without committing it.
 - `!twist <text>`: 1–180 characters, one proposal per viewer per scene, at most 50 submissions, all pending until approved. Up to 30 case-insensitive literal blocked phrases; local bans reject future input. Streamer moderation remains necessary.
-- Approve 2–4 options. Vote duration is 10–300 seconds; UI presets are 15/45/90. Option numbers remain fixed for the vote.
+- Approve 2–4 options. Vote duration is 10–300 seconds; UI presets are 15/45/90/300. Empty results can be retried for five minutes with the same approved choices; committed or nonempty results cannot be retried. Option numbers remain fixed for the vote.
 - `!vote 1` through `!vote 4`: one vote per Twitch user ID, latest valid vote replaces the previous vote. Repeated message IDs are ignored. Invalid commands do nothing.
 - Deadline is enforced server-side before processing commands. Most votes wins; ties favor earliest stage order (original submission order among approved options). Zero votes yields no winner.
 - A winner does not enter canon until the streamer clicks **Make this canon**. No automatic AI authority. Committing twice is rejected.
