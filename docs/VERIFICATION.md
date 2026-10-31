@@ -42,3 +42,10 @@ Keep secrets and access tokens out of this record. Update this file after the ac
 - Two live votes closed with zero ballots; live vote delivery/replacement is still pending verification. The second vote was open for 90 seconds. Timing versus delivery is not yet established.
 - Added a streamer-only five-minute retry for empty results, preserving approved choices. Nonempty and committed results cannot be retried. Duration selection survives live UI updates; private activity records accepted, changed, and out-of-window votes.
 - The expanded 21-test suite passes, including retry state and deadline checks. OBS/live-stream footage is still pending.
+
+## October 31 completed live chat and OBS checks
+
+- Real Twitch command from raphaelmichoud75 counted for option 1, then changed to option 2 with total ballots remaining 1. Verified directly in persisted state and private activity.
+- The owner committed the winning second choice, “Une voix dans le phare connaît le futur de Mara.” State reached canon with that result.
+- OBS Studio 32.2.1 configured through its UI: browser URL http://localhost:3000/overlay, width 1920, height 1080. A dedicated SceneShift scene contains only this overlay source. The current canon result rendered in OBS preview.
+- No stream or recording was started. A broadcast on Twitch, English demo recording, YouTube upload, and Devpost submission remain pending.
